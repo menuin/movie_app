@@ -1,10 +1,35 @@
 import React from "react";
 import axios from "axios";
 import SimpleSlider from "../components/SimpleSlider";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
+const loadingAnim = keyframes`
+  0% {
+    opacity:0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity : 0;
+  }
+`;
 const SectionContainer = styled.div`
-  margin-top: 50px;
+  margin-top: 70px;
+  margin-left: 50px;
+  margin-right: 50px;
+`;
+const Loader = styled.div`
+  /* display: flex;
+  align-items: center; */
+`;
+const LoadingDiv = styled.div`
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 20pt;
+  animation: ${loadingAnim} 1.6s infinite;
+  /* width: 70%;
+  display: flex;
+  align-items: center; */
 `;
 class Home extends React.Component {
   state = {
@@ -32,12 +57,15 @@ class Home extends React.Component {
       <SectionContainer>
         {isLoading ? (
           // not loaded
-          <div className="loader">
-            <span className="loader_text">Loading...</span>
-          </div>
+          <Loader>
+            <LoadingDiv>Loading...</LoadingDiv>
+          </Loader>
         ) : (
           // loaded
-          <SimpleSlider movies={movies} />
+
+          <div>
+            <SimpleSlider movies={movies} />
+          </div>
         )}
       </SectionContainer>
     );

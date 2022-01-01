@@ -1,9 +1,13 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Component } from "react";
 import Slider from "react-slick";
-import styled from "styled-components";
 import MovieCard from "./MovieCard";
 import MovieInfo from "./MovieInfo";
+import styled from "styled-components";
+
+const SliderContainer = styled.div`
+  align-items: center;
+  width: 100%;
+`;
 
 export default class SimpleSlider extends Component {
   constructor(props) {
@@ -21,9 +25,17 @@ export default class SimpleSlider extends Component {
       focusOnSelect: true,
       centerMode: true,
       infinite: true,
-      centerPadding: "60px",
+      centerPadding: "80px",
       slidesToShow: 3,
       beforeChange: (current, next) => this.setState({ slideIndex: next }),
+      responsive: [
+        {
+          breakpoint: 900,
+          settings: {
+            slidesToShow: 1,
+          },
+        },
+      ],
     };
     return (
       <div>
@@ -40,19 +52,19 @@ export default class SimpleSlider extends Component {
             href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
           />
           <style>{cssstyle}</style>
-
-          <Slider {...settings}>
-            {this.props.movies.map((movie) => {
-              return (
-                <div>
-                  <MovieCard poster={movie.medium_cover_image} />
-                </div>
-              );
-            })}
-          </Slider>
+          <SliderContainer>
+            <Slider {...settings}>
+              {this.props.movies.map((movie) => {
+                return (
+                  <div>
+                    <MovieCard poster={movie.medium_cover_image} />
+                  </div>
+                );
+              })}
+            </Slider>
+          </SliderContainer>
         </div>
         <MovieInfo movie={this.props.movies[this.state.slideIndex]} />
-        <FontAwesomeIcon icon={"angle-down"} />
       </div>
     );
   }
@@ -62,10 +74,15 @@ const cssstyle = `
 .container {
   margin: 0 auto;
   padding: 0px 40px 40px 40px;
-  width: 800px;
+  align-items:center;
+  width:70%
 }
 
-
+.slick-prev::before, .slick-next::before {
+  font-family : "slick",
+  font-size:40px;
+  color: black;
+}
 .slick-prev::before {
     content: "<";
   
@@ -79,16 +96,20 @@ const cssstyle = `
 .center .slick-center div {
     color: #e67e22;
     opacity: 1;
-    -ms-transform: scale(1.08);
-    transform: scale(1.08);
     transition:0.3s all ease
    
+}
+
+.center .slick-center div img {
+  box-shadow :0 0 15px grey;
 }
 
 .slick-slide:not(.slick-center) {
     opacity: 0.5;
  }
-
+.slick-slide {
+  margin : 0px, 100px;
+}
 .center h3 {
     transition: all .3s ease;
 }
