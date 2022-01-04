@@ -22,19 +22,16 @@ const containerAppear = keyframes`
 `;
 const InfoContainer = styled.div`
   text-align: center;
-  margin: 0px 100px;
-
-  /* height: 100%; */
+  margin: 0px 270px;
   display: flex;
   flex-direction: column;
 `;
 const Title = styled.div`
-  font-family: "Merriweather", serif;
-  font-size: 40pt;
-  display: inline-block;
+  font-family: "Noticia Text", serif;
+  font-size: 50px;
 `;
 const Splitter = styled.div`
-  height: 5px;
+  height: 6px;
   background-color: black;
 `;
 const SmallInfo = styled.div`
@@ -64,12 +61,9 @@ function MovieInfo({
         <SmallInfo>
           {year} | {runtime} mins
         </SmallInfo>
-        <ArrowContainer>
-          <FontAwesomeIcon icon={faAngleDown} size="4x" />
-        </ArrowContainer>
       </InfoContainer>
-      <SummaryTitle>Summary</SummaryTitle>
-      <Summary>{summary}</Summary>
+      {/* <SummaryTitle>Summary</SummaryTitle>
+      <Summary>{summary}</Summary> */}
     </div>
   );
 }

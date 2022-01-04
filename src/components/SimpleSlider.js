@@ -5,7 +5,7 @@ import MovieInfo from "./MovieInfo";
 import styled from "styled-components";
 
 const SliderContainer = styled.div`
-  align-items: center;
+  text-align: center;
   width: 100%;
 `;
 
@@ -24,10 +24,16 @@ export default class SimpleSlider extends Component {
       className: "center",
       focusOnSelect: true,
       centerMode: true,
+
       infinite: true,
-      centerPadding: "80px",
+      centerPadding: "50px",
       slidesToShow: 3,
-      beforeChange: (current, next) => this.setState({ slideIndex: next }),
+      beforeChange: (current, next) => {
+        this.setState({ slideIndex: next });
+      },
+      afterChange: () => {
+        this.props.changeCard(this.state.slideIndex);
+      },
       responsive: [
         {
           breakpoint: 900,
@@ -64,6 +70,7 @@ export default class SimpleSlider extends Component {
             </Slider>
           </SliderContainer>
         </div>
+        {/* {this.state.slideIndex} */}
         <MovieInfo movie={this.props.movies[this.state.slideIndex]} />
       </div>
     );
@@ -75,7 +82,7 @@ const cssstyle = `
   margin: 0 auto;
   padding: 0px 40px 40px 40px;
   align-items:center;
-  width:70%
+  width:60%
 }
 
 .slick-prev::before, .slick-next::before {

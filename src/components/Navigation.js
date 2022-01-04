@@ -2,32 +2,43 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const RightNavDiv = styled.div`
+const LeftNavDiv = styled.div`
   display: flex;
 `;
-const NavTitle = styled.div`
-  /* font-weight: bold; */
-  margin-left: 40px;
-  align-items: center;
 
-  color: #757575;
-  & span {
-    font-family: "Roboto Condensed", sans-serif;
-    font-size: 13pt;
-  }
-`;
 const NavigationDiv = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  background-color: #e2e2e2;
-  height: 30px;
+  background-color: #dadada;
+  height: 55px;
   align-items: center;
-  box-shadow: 0px 3px 5px #d3d3d3;
+
   font-size: 12pt;
+  position: fixed;
+  top: 0;
 `;
-const NavItemDiv = styled.div`
-  margin-right: 30px;
+
+const NavItem = styled.div`
+  width: 50px;
+  height: 33px;
+  border-radius: 23px;
+  margin-left: 25px;
+`;
+const HomeDiv = styled(NavItem)`
+  background-color: #6a79ff;
+
+  &:hover {
+    background-color: #3a4288;
+  }
+`;
+
+const AboutDiv = styled(NavItem)`
+  background-color: #1ec675;
+
+  &:hover {
+    background-color: #167d4c;
+  }
 `;
 const StyledLink = styled(Link)`
   text-decoration-line: none;
@@ -37,17 +48,15 @@ const StyledLink = styled(Link)`
 function Navigation() {
   return (
     <NavigationDiv>
-      <NavTitle>
-        <span>HERE ARE SOME YTS TOP RATED MOVIES FOR YOU ...</span>
-      </NavTitle>
-      <RightNavDiv>
-        <NavItemDiv>
-          <StyledLink to="/">Home</StyledLink>
-        </NavItemDiv>
-        <NavItemDiv>
-          <StyledLink to="/about">About</StyledLink>
-        </NavItemDiv>
-      </RightNavDiv>
+      <LeftNavDiv>
+        <StyledLink to="/">
+          <HomeDiv></HomeDiv>
+        </StyledLink>
+
+        <StyledLink to="/about">
+          <AboutDiv></AboutDiv>
+        </StyledLink>
+      </LeftNavDiv>
     </NavigationDiv>
   );
 }

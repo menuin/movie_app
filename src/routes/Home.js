@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SimpleSlider from "../components/SimpleSlider";
 import styled, { keyframes } from "styled-components";
@@ -19,57 +19,32 @@ const SectionContainer = styled.div`
   margin-left: 50px;
   margin-right: 50px;
 `;
-const Loader = styled.div`
-  /* display: flex;
-  align-items: center; */
-`;
+const Loader = styled.div``;
 const LoadingDiv = styled.div`
   font-family: "Roboto Condensed", sans-serif;
   font-size: 20pt;
   animation: ${loadingAnim} 1.6s infinite;
-  /* width: 70%;
-  display: flex;
-  align-items: center; */
 `;
-class Home extends React.Component {
-  state = {
-    isLoading: true,
-    movies: [],
-  };
-  getMovies = async () => {
-    const {
-      data: {
-        data: { movies },
-      },
-    } = await axios.get(
-      "https://yts-proxy.now.sh/list_movies.json?sort_by=rating"
-    );
-
-    this.setState({ movies });
-    this.setState({ isLoading: false });
-  };
-  componentDidMount() {
-    this.getMovies();
-  }
-  render() {
-    const { isLoading, movies } = this.state;
-    return (
-      <SectionContainer>
-        {isLoading ? (
-          // not loaded
-          <Loader>
-            <LoadingDiv>Loading...</LoadingDiv>
-          </Loader>
-        ) : (
-          // loaded
-
-          <div>
-            <SimpleSlider movies={movies} />
-          </div>
-        )}
-      </SectionContainer>
-    );
-  }
-}
+const MainContainer = styled.div`
+  margin-top: 60px;
+`;
+const Home = ({ isLoading, movies, changeCard }) => {
+  return (
+    <SectionContainer>
+      {isLoading ? (
+        // not loaded
+        <Loader>
+          <LoadingDiv>Loading...</LoadingDiv>
+        </Loader>
+      ) : (
+        // loaded
+        // 여기에 슬라이드 컴포넌트가 들어가야할 것 같은데..
+        <MainContainer>
+          <SimpleSlider movies={movies} changeCard={changeCard} />
+        </MainContainer>
+      )}
+    </SectionContainer>
+  );
+};
 
 export default Home;

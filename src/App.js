@@ -7,22 +7,29 @@ import Detail from "./routes/Detail";
 import styled from "styled-components";
 
 const FullBodyContainer = styled.div`
-  position: relative;
+  /* position: relative; */
   /* height: 100%; */
 `;
-const BgContainer = styled.div``;
-function App() {
+function App({ isLoading, movies, changeCard }) {
   return (
-    <BgContainer>
-      <FullBodyContainer>
-        <HashRouter>
-          <Navigation />
-          <Route path="/" exact={true} component={Home} />
-          <Route path="/about" component={About} />
-          <Route path="/movie_detail" component={Detail} />
-        </HashRouter>
-      </FullBodyContainer>
-    </BgContainer>
+    <FullBodyContainer>
+      <HashRouter>
+        <Navigation />
+        <Route
+          path="/"
+          exact={true}
+          render={() => (
+            <Home
+              isLoading={isLoading}
+              movies={movies}
+              changeCard={changeCard}
+            />
+          )}
+        />
+        <Route path="/about" component={About} />
+        <Route path="/movie_detail" component={Detail} />
+      </HashRouter>
+    </FullBodyContainer>
   );
 }
 
