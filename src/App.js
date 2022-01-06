@@ -7,8 +7,7 @@ import Detail from "./routes/Detail";
 import styled from "styled-components";
 
 const FullBodyContainer = styled.div`
-  /* position: relative; */
-  /* height: 100%; */
+  position: relative;
 `;
 function App({ isLoading, movies, changeCard }) {
   return (

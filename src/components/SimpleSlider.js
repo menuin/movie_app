@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import MovieCard from "./MovieCard";
 import MovieInfo from "./MovieInfo";
 import styled from "styled-components";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
 const SliderContainer = styled.div`
   text-align: center;
@@ -19,12 +20,24 @@ export default class SimpleSlider extends Component {
   componentDidMount() {
     console.log(this.props.movies);
   }
+
   render() {
+    const PrevArrow = ({ className, style, onClick }) => (
+      <div onClick={onClick} className={className}>
+        <FaAngleLeft />
+      </div>
+    );
+    const NextArrow = ({ className, style, onClick }) => (
+      <div style={{ ...style }} onClick={onClick} className={className}>
+        <FaAngleRight />
+      </div>
+    );
     const settings = {
       className: "center",
       focusOnSelect: true,
       centerMode: true,
-
+      prevArrow: <PrevArrow />,
+      nextArrow: <NextArrow />,
       infinite: true,
       centerPadding: "50px",
       slidesToShow: 3,
@@ -70,7 +83,6 @@ export default class SimpleSlider extends Component {
             </Slider>
           </SliderContainer>
         </div>
-        {/* {this.state.slideIndex} */}
         <MovieInfo movie={this.props.movies[this.state.slideIndex]} />
       </div>
     );
@@ -86,20 +98,18 @@ const cssstyle = `
 }
 
 .slick-prev::before, .slick-next::before {
-  font-family : "slick",
+  // font-family : "slick",
   font-size:40px;
   color: black;
 }
-.slick-prev::before {
-    content: "<";
+// .slick-prev::before {
+//     content: "<";
   
-}
-.slick-next::before {
-    content: ">";
-}
-.slick-next:before, .slick-prev:before {
-    color: #000;
-}
+// }
+// .slick-next::before {
+//     content: ">";
+// }
+
 .center .slick-center div {
     color: #e67e22;
     opacity: 1;
