@@ -38,14 +38,6 @@ const SmallInfo = styled.div`
   margin-top: 5px;
   font-family: "Roboto Condensed", sans-serif;
 `;
-const SummaryTitle = styled.div`
-  font-family: "Merriweather", serif;
-  font-size: 30pt;
-`;
-const Summary = styled.div`
-  font-family: "Roboto Condensed", sans-serif;
-  font-size: 15pt;
-`;
 
 function MovieInfo({
   movie: { id, year, title, runtime, mpa_rating, summary },
@@ -62,8 +54,6 @@ function MovieInfo({
           {year} | {runtime} mins
         </SmallInfo>
       </InfoContainer>
-      {/* <SummaryTitle>Summary</SummaryTitle>
-      <Summary>{summary}</Summary> */}
     </div>
   );
 }

@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactFullpage from "@fullpage/react-fullpage";
 import { FaAngleDown } from "react-icons/fa";
 import SimpleSlider from "../components/SimpleSlider";
 import styled from "styled-components";
+import Detail from "./Detail";
+import MovieInfo from "../components/MovieInfo";
 
 const MainContainer = styled.div`
   margin-top: 150px;
@@ -23,7 +25,11 @@ const SeeMoreContainer = styled.div`
   font-weight: 700;
   font-size: 25px;
 `;
-function Main({ movies, changeCard }) {
+function Main({ movies }) {
+  const [crntMovieIdx, setCrntMovieIdx] = useState(0);
+  const changeCard = (index) => {
+    setCrntMovieIdx(index);
+  };
   return (
     <ReactFullpage
       scrollingSpeed={1000} /* Options here */
@@ -43,7 +49,10 @@ function Main({ movies, changeCard }) {
                 <div>find more info</div>
               </SeeMoreContainer>
             </div>
-            <div className="section">hi</div>
+
+            <div className="section">
+              <Detail movie={movies[crntMovieIdx]} />
+            </div>
           </ReactFullpage.Wrapper>
         );
       }}

@@ -13,7 +13,6 @@ const SectionContainer = styled.div`
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [movies, setMovies] = useState([]);
-  const [crntMovie, setCrntMovie] = useState(0);
 
   const getMovies = async () => {
     const {
@@ -24,6 +23,8 @@ const Home = () => {
       "https://yts-proxy.now.sh/list_movies.json?sort_by=rating"
     );
 
+    console.log(movies);
+
     setMovies(movies);
     setIsLoading(false);
   };
@@ -32,16 +33,6 @@ const Home = () => {
     getMovies();
   }, []);
 
-  const changeCard = async (index) => {
-    console.log(index);
-    setCrntMovie(index);
-    console.log(crntMovie);
-    setTimeout(() => {
-      console.log(movies[crntMovie]);
-      console.log(crntMovie);
-    }, 4000);
-  };
-
   return (
     <SectionContainer>
       {isLoading ? (
@@ -49,7 +40,7 @@ const Home = () => {
         <Loading />
       ) : (
         // loaded
-        <Main movies={movies} changeCard={changeCard} />
+        <Main movies={movies} />
       )}
     </SectionContainer>
   );
