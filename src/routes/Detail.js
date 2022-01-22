@@ -12,7 +12,6 @@ const DetailContainer = styled.div`
 `;
 const DetailPoster = styled.img`
   width: 70%;
-  /* box-shadow: 4px 4px 13px #9f9f9f; */
 `;
 const PosterContainer = styled.div`
   margin-left: 50px;

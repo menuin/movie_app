@@ -8,6 +8,7 @@ import styled from "styled-components";
 
 const FullBodyContainer = styled.div`
   position: relative;
+  height: 100%;
 `;
 function App({ isLoading, movies, changeCard }) {
   return (
